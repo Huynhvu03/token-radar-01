@@ -1,0 +1,105 @@
+/* Token Radar — dark navy board, amber for value, teal for growth. No network. */
+:root{
+  --bg:#0d1524; --panel:#141f33; --panel2:#182642; --line:#263650;
+  --text:#e9eff8; --muted:#93a5c0; --faint:#6b7d99;
+  --amber:#f2b544; --amber-dim:#8a6d2b; --teal:#35c48d; --red:#e56a6a;
+  --chip:#1d2c48; --radius:10px;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--amber)}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;background:var(--panel);padding:8px 12px;border-radius:6px}
+.shell{max-width:1080px;margin:0 auto;padding:20px 16px 48px}
+.top{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:12px}
+.brand{font-size:22px;font-weight:800;letter-spacing:.04em}
+.brand b{color:var(--amber)}
+.top-meta{display:flex;gap:14px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.lede{margin:18px 0 8px}
+.lede h1{font-size:26px;line-height:1.25;margin:0 0 6px}
+.lede p{color:var(--muted);margin:0;max-width:72ch}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px}
+.fact span{display:block;color:var(--muted);font-size:12px}
+.fact b{font-size:19px}
+.spot{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0 18px}
+.card{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px 12px;cursor:pointer;text-align:left;color:var(--text);font:inherit}
+.card:hover{border-color:var(--amber-dim)}
+.card .rank{color:var(--amber);font-size:12px;font-weight:700}
+.card .nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .val{color:var(--amber);font-weight:700}
+.card .sub{color:var(--muted);font-size:12px}
+.card .rank,.card .nm,.card .val,.card .sub{display:block}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label,.field .lab{color:var(--muted);font-size:12px}
+input[type=search],select{background:var(--panel);color:var(--text);border:1px solid var(--line);
+  border-radius:8px;padding:8px 10px;font:inherit;min-width:0}
+input[type=search]{width:260px}
+.tabs{display:flex;gap:6px}
+.tabs button{background:var(--panel);color:var(--muted);border:1px solid var(--line);
+  border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--amber);color:#1a1405;border-color:var(--amber);font-weight:700}
+.check{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:13px;padding-bottom:8px}
+.count{margin-left:auto;color:var(--muted);font-size:13px;padding-bottom:8px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+caption{text-align:left;color:var(--muted);padding:12px 14px 4px}
+th,td{padding:9px 12px;text-align:left;border-top:1px solid var(--line);vertical-align:middle}
+thead th{border-top:0;color:var(--muted);font-weight:600;white-space:nowrap}
+thead th button{background:none;border:0;color:var(--muted);font:inherit;font-weight:600;
+  padding:0;cursor:pointer;text-align:left}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:#1a2947}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.name b{display:block}
+.sub{color:var(--muted);font-size:12px}
+.pos{color:var(--teal)} .neg{color:var(--red)}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;
+  border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:1px}
+.badge.wl{background:#3a2f10;color:var(--amber)}
+.badge.er{background:var(--chip);color:var(--muted)}
+.implied .bar{height:6px;background:#223350;border-radius:3px;margin-bottom:4px;overflow:hidden}
+.implied .bar i{display:block;height:100%;background:var(--amber);border-radius:3px}
+.empty{padding:28px;text-align:center}
+.empty h2{margin:0 0 6px}
+.empty p{color:var(--muted)}
+.button{background:var(--amber);color:#1a1405;border:0;border-radius:8px;padding:9px 14px;
+  font:inherit;font-weight:700;cursor:pointer}
+.model{padding:16px 18px}
+.model h2,.detail-section h3{margin:0 0 8px;font-size:17px}
+.model p{color:var(--muted);margin:6px 0}
+.formula{background:#0a1120;border:1px solid var(--line);border-radius:8px;
+  padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;
+  overflow-x:auto;white-space:nowrap}
+.cal{width:100%;font-size:13px}
+.cal th,.cal td{padding:6px 10px}
+.note{font-size:13px;color:var(--faint)}
+dialog.detail{background:var(--panel);color:var(--text);border:1px solid var(--line);
+  border-radius:12px;max-width:640px;width:calc(100vw - 32px);padding:0;
+  max-height:calc(100vh - 32px);overflow-y:auto}
+dialog.detail::backdrop{background:rgba(4,8,18,.7)}
+.detail-head{display:flex;justify-content:space-between;gap:12px;padding:12px 20px 0}
+.detail-head h2{margin:2px 0;font-size:20px}
+.detail-section{padding:10px 20px 12px;border-top:1px solid var(--line)}
+.detail-section:first-of-type{border-top:0}
+.equation{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin:8px 0}
+.equation div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:3px 0}
+.equation span{color:var(--muted)}
+.steps{margin:8px 0 0;padding-left:20px}
+.steps li{margin:5px 0}
+.steps .cost{display:block;color:var(--muted);font-size:13px}
+.close{background:var(--panel2);color:var(--text);border:1px solid var(--line);
+  border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer;height:fit-content}
+.foot{color:var(--faint);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:760px){
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .spot{grid-template-columns:repeat(2,1fr)}
+  input[type=search]{width:100%}
+  .equation{grid-template-columns:1fr}
+}
