@@ -1,0 +1,5 @@
+# Kit, build outputs and submission bundles stay out of the repo.
+kit/
+out/
+*.tar.gz
+node_modules/
